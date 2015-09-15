@@ -68,6 +68,7 @@ struct pdfapp_s
 	int grayscale;
 	fz_colorspace *colorspace;
 	int invert;
+	int noshadow;
 	int tint, tint_r, tint_g, tint_b;
 	unsigned short xbg_r, xbg_g, xbg_b;
 

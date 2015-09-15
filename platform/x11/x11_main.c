@@ -502,9 +502,12 @@ static void winblit(pdfapp_t *app)
 	fillrect(0, 0, gapp.winw, y0);
 	fillrect(0, y1, gapp.winw, gapp.winh - y1);
 
-	XSetForeground(xdpy, xgc, xshcolor.pixel);
-	fillrect(x0+2, y1, image_w, 2);
-	fillrect(x1, y0+2, 2, image_h);
+	if (! gapp.noshadow)
+	{
+		XSetForeground(xdpy, xgc, xshcolor.pixel);
+		fillrect(x0+2, y1, image_w, 2);
+		fillrect(x1, y0+2, 2, image_h);
+	}
 
 	if (gapp.iscopying || justcopied)
 	{
@@ -807,6 +810,7 @@ static void usage(void)
 	fprintf(stderr, "\t-S -\tfont size for EPUB layout\n");
 	fprintf(stderr, "\t-B -\tRRGGBB (window bg color in hexadecimal syntax)\n");
 	fprintf(stderr, "\t-i -\tinvert colors\n");
+	fprintf(stderr, "\t-n -\tdo not draw page shadow\n");
 	exit(1);
 }
 
@@ -837,7 +841,7 @@ int main(int argc, char **argv)
 
 	pdfapp_init(ctx, &gapp);
 
-	while ((c = fz_getopt(argc, argv, "p:r:A:C:W:H:S:U:B:i")) != -1)
+	while ((c = fz_getopt(argc, argv, "p:r:A:C:W:H:S:U:B:in")) != -1)
 	{
 		switch (c)
 		{
@@ -862,6 +866,7 @@ int main(int argc, char **argv)
 			gapp.xbg_b = (((c) & 255) << 8) | (c & 255);
 			break;
 		case 'i': gapp.invert = 1; break;
+		case 'n': gapp.noshadow = 1; break;
 		default: usage();
 		}
 	}
