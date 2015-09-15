@@ -132,6 +132,9 @@ void pdfapp_init(fz_context *ctx, pdfapp_t *app)
 	app->tint_r = 255;
 	app->tint_g = 250;
 	app->tint_b = 240;
+	app->xbg_r = 0x7000;
+	app->xbg_g = 0x7000;
+	app->xbg_b = 0x7000;
 }
 
 void pdfapp_setresolution(pdfapp_t *app, int res)

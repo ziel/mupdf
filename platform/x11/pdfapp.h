@@ -69,6 +69,7 @@ struct pdfapp_s
 	fz_colorspace *colorspace;
 	int invert;
 	int tint, tint_r, tint_g, tint_b;
+	unsigned short xbg_r, xbg_g, xbg_b;
 
 	/* presentation mode */
 	int presentation_mode;
