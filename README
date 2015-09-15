@@ -1,3 +1,15 @@
+This is a personal fork of MuPDF with some features that are useful to me. ymmv
+
+Added features:
+
+- cli switch for inverted colors
+- cli switch for setting the default window bg color
+- cli switch to kill page drop shadow effect
+
+Original README Follows
+
+---
+
 ABOUT
 
 MuPDF is a lightweight PDF, XPS, EPUB and CBZ viewer and parser/rendering
