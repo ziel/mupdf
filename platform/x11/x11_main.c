@@ -798,6 +798,11 @@ static void signal_handler(int signal)
 		reloading = 1;
 }
 
+static unsigned short hex_to_xcolorval(int i)
+{
+  return (i << 8) | i;
+}
+
 static void usage(void)
 {
 	fprintf(stderr, "usage: mupdf [options] file.pdf [page]\n");
@@ -861,9 +866,9 @@ int main(int argc, char **argv)
 		case 'U': gapp.layout_css = fz_optarg; break;
 		case 'B':
 			c = strtol(fz_optarg, NULL, 16);
-			gapp.xbg_r = (((c >> 16) & 255) << 8) | ((c >> 16) & 255);
-			gapp.xbg_g = (((c >> 8) & 255) << 8) | ((c >> 8) & 255);
-			gapp.xbg_b = (((c) & 255) << 8) | (c & 255);
+			gapp.xbg_r = hex_to_xcolorval((c >> 16) & 255);
+			gapp.xbg_g = hex_to_xcolorval((c >> 8) & 255);
+			gapp.xbg_b = hex_to_xcolorval(c & 255);
 			break;
 		case 'i': gapp.invert = 1; break;
 		case 'n': gapp.noshadow = 1; break;
